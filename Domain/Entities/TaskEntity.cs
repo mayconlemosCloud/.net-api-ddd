@@ -19,5 +19,6 @@ namespace Domain.Entities
         public Project Project { get; set; } = null!; // Relacionamento com Project
 
         public ICollection<TaskHistory> Histories { get; set; } = new List<TaskHistory>(); // Relacionamento com TaskHistory
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>(); // Relacionamento com Comment
     }
 }

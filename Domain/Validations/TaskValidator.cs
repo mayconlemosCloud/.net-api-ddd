@@ -21,6 +21,11 @@ namespace Domain.Validations
                 .NotEmpty().WithMessage("A prioridade da tarefa é obrigatória.")
                 .Must(priority => new[] { "Baixa", "Média", "Alta" }.Contains(priority))
                 .WithMessage("A prioridade deve ser 'Baixa', 'Média' ou 'Alta'.");
+
+            RuleFor(task => task.Priority)
+                .NotEmpty().WithMessage("A prioridade da tarefa é obrigatória.")
+                .Must((task, priority) => string.IsNullOrEmpty(task.Priority) || task.Priority == priority)
+                .WithMessage("Não é permitido alterar a prioridade de uma tarefa depois que ela foi criada.");
         }
     }
 }
