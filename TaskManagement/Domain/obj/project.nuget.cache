@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+FusCsjnTso=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lemos\\Desktop\\Projeto\\dotnet\\.net-api-ddd\\TaskManagement\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lemos\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512"
+  ],
+  "logs": []
+}
