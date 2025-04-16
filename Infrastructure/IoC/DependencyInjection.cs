@@ -1,6 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure;
+using Application.Mappings;
+using AutoMapper;
+using Domain.Repositories;
+using Domain.Entities;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.IoC
 {
@@ -13,6 +18,11 @@ namespace Infrastructure.IoC
                 options.UseNpgsql(connectionString));
 
             // Registrar outros serviços da camada Infrastructure, se necessário
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            // Register repository interfaces
+            services.AddScoped<IBaseRepository<Project>, ProjectRepository>();
+            services.AddScoped<IBaseRepository<TaskEntity>, TaskRepository>();
 
             return services;
         }
