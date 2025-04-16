@@ -8,17 +8,14 @@ namespace Application.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<Project, ProjectDTO>();
-            CreateMap<CreateProjectDTO, Project>();
-            CreateMap<UpdateProjectDTO, Project>();
+            CreateMap<ProjectRequest, Project>();
+            CreateMap<Project, ProjectResponse>();
 
-            CreateMap<TaskEntity, TaskDTO>();
-            CreateMap<CreateTaskDTO, TaskEntity>();
-            CreateMap<UpdateTaskDTO, TaskEntity>();
+            CreateMap<TaskRequest, TaskEntity>();
+            CreateMap<TaskEntity, TaskResponse>();
 
-            CreateMap<User, UserDTO>();
-            CreateMap<CreateUserDTO, User>();
-            CreateMap<UpdateUserDTO, User>();
+            CreateMap<UserRequest, User>();
+            CreateMap<User, UserResponse>();
         }
     }
 }

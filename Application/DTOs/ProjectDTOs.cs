@@ -1,22 +1,16 @@
 namespace Application.DTOs
 {
-    public class ProjectDTO
+    public class ProjectResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; }
+        public Guid UserId { get; set; }
+        public ICollection<TaskResponse> Tasks { get; set; } = new List<TaskResponse>();
     }
 
-    public class CreateProjectDTO
+    public class ProjectRequest
     {
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-    }
-
-    public class UpdateProjectDTO
-    {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
+        public Guid UserId { get; set; }
     }
 }

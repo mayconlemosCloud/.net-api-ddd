@@ -8,7 +8,5 @@ namespace Domain.Entities
         public ICollection<TaskEntity> Tasks { get; set; } = new List<TaskEntity>();
 
         public const int MaxTasks = 20; // Limite máximo de tarefas por projeto
-
-
     }
 }

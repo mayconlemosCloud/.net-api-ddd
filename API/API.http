@@ -1,6 +1,35 @@
 @API_HostAddress = http://localhost:5163
 
-GET {{API_HostAddress}}/weatherforecast/
+### Listar Usuários (pegar o id automaticamente)
+GET http://localhost:5163/api/user
 Accept: application/json
 
-###
+### Criar Usuário
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "João da Silva",
+  "email": "joao@exemplo.com"
+}
+
+### Criar Projeto (substitua {{userId}} pelo id retornado acima)
+POST http://localhost:5163/api/project
+Content-Type: application/json
+
+{
+  "name": "Projeto Exemplo",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+### Criar Task (substitua {{projectId}} pelo id retornado acima)
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Minha Tarefa",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-04-20T00:00:00",
+  "status": "Pendente",
+  "projectId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}

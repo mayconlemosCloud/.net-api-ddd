@@ -1,0 +1,43 @@
+### Criar Usuário
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "Usuário Exemplo",
+  "email": "usuario.exemplo@teste.com"
+}
+
+### Listar Usuários (para pegar o id)
+GET http://localhost:5163/api/user
+Accept: application/json
+
+### Criar Projeto (substitua {{userId}} pelo id retornado acima)
+POST http://localhost:5163/api/project
+Content-Type: application/json
+
+{
+  "name": "Projeto Exemplo",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+### Listar Projetos (para pegar o id do projeto)
+GET http://localhost:5163/api/project
+Accept: application/json
+
+### Criar Tarefa (substitua {{projectId}} pelo id retornado acima)
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Minha Tarefa 2",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Alta",
+  "projectId": "01963f81-22b7-7750-b927-68e92b6ee20f",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+### Listar Tarefas (opcional)
+GET http://localhost:5163/api/task
+Accept: application/json

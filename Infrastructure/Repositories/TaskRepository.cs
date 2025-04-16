@@ -40,9 +40,9 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(TaskEntity entity)
         {
-            var task = await _context.Tasks.FindAsync(id);
+            var task = await _context.Tasks.FindAsync(entity.Id);
             if (task != null)
             {
                 _context.Tasks.Remove(task);

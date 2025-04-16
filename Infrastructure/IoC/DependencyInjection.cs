@@ -6,6 +6,8 @@ using AutoMapper;
 using Domain.Repositories;
 using Domain.Entities;
 using Infrastructure.Repositories;
+using Application.Services.Interfaces;
+using Application.Services;
 
 namespace Infrastructure.IoC
 {
@@ -17,12 +19,20 @@ namespace Infrastructure.IoC
             services.AddDbContext<TaskManagementDbContext>(options =>
                 options.UseNpgsql(connectionString));
 
-            // Registrar outros serviços da camada Infrastructure, se necessário
+
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
-            // Register repository interfaces
+
             services.AddScoped<IBaseRepository<Project>, ProjectRepository>();
             services.AddScoped<IBaseRepository<TaskEntity>, TaskRepository>();
+            services.AddScoped<IBaseRepository<User>, UserRepository>();
+
+
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<ITaskService, TaskService>();
+
 
             return services;
         }
