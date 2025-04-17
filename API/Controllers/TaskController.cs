@@ -35,6 +35,11 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TaskRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var createdTask = await _taskService.AddAsync(request);
             return CreatedAtAction(nameof(GetById), new { id = createdTask.Id }, createdTask);
         }
@@ -42,6 +47,10 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] TaskRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var updatedTask = await _taskService.UpdateAsync(id, request);
             if (updatedTask == null)
                 return NotFound();

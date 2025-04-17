@@ -1,7 +1,8 @@
 using FluentValidation;
 using Domain.Entities;
+using System;
 
-namespace Domain.Validations
+namespace Application.Validations
 {
     public class TaskHistoryValidator : AbstractValidator<TaskHistory>
     {
@@ -18,8 +19,6 @@ namespace Domain.Validations
 
             RuleFor(history => history.UpdatedAt)
                 .LessThanOrEqualTo(DateTime.Now).WithMessage("A data de modificação não pode ser no futuro.");
-
-
         }
     }
 }

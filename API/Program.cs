@@ -1,15 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Infrastructure;
-using Infrastructure.IoC;
+using IOC;
 using Application.Mappings;
 using AutoMapper;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Configurar a injeção de dependência usando a camada IoC
+// Configuração do FluentValidation (apenas ativação do pipeline)
+builder.Services.AddFluentValidationAutoValidation();
+
+// Configurar a injeção de dependência usando a camada IOC
 builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 builder.Services.AddEndpointsApiExplorer();

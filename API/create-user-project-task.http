@@ -41,3 +41,184 @@ Content-Type: application/json
 ### Listar Tarefas (opcional)
 GET http://localhost:5163/api/task
 Accept: application/json
+
+// ================= USER VALIDATOR TESTS =================
+
+### [User] Nome obrigatório
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "usuario.teste@teste.com"
+}
+
+### [User] Nome maior que 100 caracteres
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "Usuário com nome muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "email": "usuario.teste@teste.com"
+}
+
+### [User] E-mail obrigatório
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "Usuário Teste",
+  "email": ""
+}
+
+### [User] E-mail inválido
+POST http://localhost:5163/api/user
+Content-Type: application/json
+
+{
+  "name": "Usuário Teste",
+  "email": "email-invalido"
+}
+
+// ================= PROJECT VALIDATOR TESTS =================
+
+### [Project] Nome obrigatório
+POST http://localhost:5163/api/project
+Content-Type: application/json
+
+{
+  "name": "",
+  "userId": ""
+}
+
+### [Project] Nome maior que 100 caracteres
+POST http://localhost:5163/api/project
+Content-Type: application/json
+
+{
+  "name": "Projeto com nome muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "userId": ""
+}
+
+### [Project] Mais de 20 tarefas (crie 21 tarefas para o mesmo projeto para testar)
+// Repita a requisição de criação de tarefa 21 vezes para o mesmo projectId
+
+### [Project] Remover projeto com tarefas pendentes
+// Tente remover um projeto que ainda possui tarefas com status diferente de "Concluída"
+
+// ================= TASK VALIDATOR TESTS =================
+
+### [Task] Título obrigatório
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Alta",
+  "projectId": "",
+  "userId": ""
+}
+
+### [Task] Título maior que 100 caracteres
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Título de tarefa muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Alta",
+  "projectId": "",
+  "userId": ""
+}
+
+### [Task] Descrição maior que 500 caracteres
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Tarefa Teste",
+  "description": "Descrição muito longa..." // insira mais de 500 caracteres aqui
+  ,
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Alta",
+  "projectId": "",
+  "userId": ""
+}
+
+### [Task] Data de vencimento no passado
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Tarefa com data passada",
+  "description": "Descrição da tarefa",
+  "dueDate": "2024-01-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Alta",
+  "projectId": "019644b4-c912-7d6d-bab7-c53612853990",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+### [Task] Prioridade inválida
+POST http://localhost:5163/api/task
+Content-Type: application/json
+
+{
+  "title": "Tarefa com prioridade inválida",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Pendente",
+  "priority": "Urgente",
+  "projectId": "019644b4-c912-7d6d-bab7-c53612853990",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+### [Task] Alteração de prioridade após criação
+// Tente atualizar a prioridade de uma tarefa já criada (endpoint PUT/PATCH)
+
+### [Task] Mais de 20 tarefas no projeto
+// Repita a requisição de criação de tarefa 21 vezes para o mesmo projectId
+
+// ================= TASK HISTORY VALIDATOR TESTS =================
+
+### [TaskHistory] Alterações obrigatórias
+POST http://localhost:5163/api/task/history
+Content-Type: application/json
+
+{
+  "changes": "",
+  "author": "Usuário Teste",
+  "createdAt": "2025-04-17T12:00:00Z",
+  "updatedAt": "2025-04-17T12:00:00Z",
+  "taskId": ""
+}
+
+### [TaskHistory] Autor obrigatório
+POST http://localhost:5163/api/task/history
+Content-Type: application/json
+
+{
+  "changes": "Alteração feita",
+  "author": "",
+  "createdAt": "2025-04-17T12:00:00Z",
+  "updatedAt": "2025-04-17T12:00:00Z",
+  "taskId": ""
+}
+
+### [TaskHistory] Data de modificação no futuro
+POST http://localhost:5163/api/task/history
+Content-Type: application/json
+
+{
+  "changes": "Alteração feita",
+  "author": "Usuário Teste",
+  "createdAt": "2026-01-01T00:00:00Z",
+  "updatedAt": "2026-01-01T00:00:00Z",
+  "taskId": ""
+}
