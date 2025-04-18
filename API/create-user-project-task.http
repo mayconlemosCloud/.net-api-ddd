@@ -182,43 +182,24 @@ Content-Type: application/json
 ### [Task] Alteração de prioridade após criação
 // Tente atualizar a prioridade de uma tarefa já criada (endpoint PUT/PATCH)
 
-### [Task] Mais de 20 tarefas no projeto
-// Repita a requisição de criação de tarefa 21 vezes para o mesmo projectId
+### Listar todas as tarefas 
+GET http://localhost:5163/api/task
+Accept: application/json
 
-// ================= TASK HISTORY VALIDATOR TESTS =================
+### [Task] Atualizar tarefa para testar histórico de alterações
+# Substitua {taskId}, {projectId}, {userId} pelos valores reais
 
-### [TaskHistory] Alterações obrigatórias
-POST http://localhost:5163/api/task/history
+PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
 Content-Type: application/json
 
 {
-  "changes": "",
-  "author": "Usuário Teste",
-  "createdAt": "2025-04-17T12:00:00Z",
-  "updatedAt": "2025-04-17T12:00:00Z",
-  "taskId": ""
+    "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
+    "title": "Minha Tarefa atualizada",
+    "description": "Descrição da tarefa",
+    "dueDate": "2025-05-01T00:00:00Z",
+    "status": "Pendente",
+    "priority": "Baixa",
+    "projectId": "019644b4-cc3e-7773-852c-342589080a73",
+    "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-### [TaskHistory] Autor obrigatório
-POST http://localhost:5163/api/task/history
-Content-Type: application/json
-
-{
-  "changes": "Alteração feita",
-  "author": "",
-  "createdAt": "2025-04-17T12:00:00Z",
-  "updatedAt": "2025-04-17T12:00:00Z",
-  "taskId": ""
-}
-
-### [TaskHistory] Data de modificação no futuro
-POST http://localhost:5163/api/task/history
-Content-Type: application/json
-
-{
-  "changes": "Alteração feita",
-  "author": "Usuário Teste",
-  "createdAt": "2026-01-01T00:00:00Z",
-  "updatedAt": "2026-01-01T00:00:00Z",
-  "taskId": ""
-}

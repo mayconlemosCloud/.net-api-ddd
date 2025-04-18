@@ -37,6 +37,17 @@ namespace Infrastructure.Repositories
         public async Task UpdateAsync(TaskEntity entity)
         {
             _context.Tasks.Update(entity);
+
+            var taskHistory = new TaskHistory
+            {
+                TaskEntityId = entity.Id,
+                Changes = "Task atualizada.",
+                UserId = entity.UserId,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+            await _context.TaskHistories.AddAsync(taskHistory);
+
             await _context.SaveChangesAsync();
         }
 
