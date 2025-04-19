@@ -10,6 +10,7 @@ using AutoMapper;
 using FluentValidation;
 using Application.DTOs;
 
+namespace Test.Services;
 public class TaskServiceTests
 {
     private readonly Mock<IBaseRepository<TaskEntity>> _taskRepositoryMock;

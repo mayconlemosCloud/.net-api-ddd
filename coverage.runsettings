@@ -1,0 +1,39 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <ExcludeByFile>
+            <!-- Excluindo arquivos específicos e variações de caminhos -->
+            <File>**/Migrations/*.cs</File>
+            <File>**/Migrations/**/*.cs</File>
+            <File>**/Program.cs</File>
+            <File>**/Startup.cs</File>
+            <File>*/Program.cs</File>
+            <File>*/Startup.cs</File>
+            <File>*/Migrations/*.cs</File>
+            <File>*/Migrations/**/*.cs</File>
+          </ExcludeByFile>
+          <Exclude>
+            <!-- Excluindo por atributo -->
+            <Attribute>GeneratedCodeAttribute</Attribute>
+            <!-- Excluindo por namespace -->
+            <Namespace>*Tests*</Namespace>
+            <Namespace>*Test*</Namespace>
+            <Namespace>*Mock*</Namespace>
+            <Namespace>*Migrations*</Namespace>
+            <Namespace>Infrastructure.Migrations*</Namespace>
+            <!-- Excluindo por classe -->
+            <Class>*Program</Class>
+            <Class>*Startup</Class>
+            <Class>*Migrations*</Class>
+            <!-- Excluindo por módulo (assembly) -->
+            <Module>*Migrations*</Module>
+            <Module>*Test*</Module>
+            <Module>*Tests*</Module>
+          </Exclude>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

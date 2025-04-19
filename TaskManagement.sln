@@ -13,17 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOC", "IOC\IOC.csproj", "{50DCF5D5-B0FD-43E7-8C9D-4B9D84C1E9EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{66E1033D-0753-4A6A-AF80-197901C271E7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests\tests.csproj", "{1232C249-7C5C-459A-B2F5-B8A1B06C8A17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{1D829759-8B6D-4C44-AA7B-73928859CBF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{633BD34F-786F-4343-A7F5-913A53B33396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -46,12 +41,12 @@ Global
 		{50DCF5D5-B0FD-43E7-8C9D-4B9D84C1E9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50DCF5D5-B0FD-43E7-8C9D-4B9D84C1E9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50DCF5D5-B0FD-43E7-8C9D-4B9D84C1E9EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1232C249-7C5C-459A-B2F5-B8A1B06C8A17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1232C249-7C5C-459A-B2F5-B8A1B06C8A17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1232C249-7C5C-459A-B2F5-B8A1B06C8A17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1232C249-7C5C-459A-B2F5-B8A1B06C8A17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D829759-8B6D-4C44-AA7B-73928859CBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D829759-8B6D-4C44-AA7B-73928859CBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D829759-8B6D-4C44-AA7B-73928859CBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D829759-8B6D-4C44-AA7B-73928859CBF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1232C249-7C5C-459A-B2F5-B8A1B06C8A17} = {66E1033D-0753-4A6A-AF80-197901C271E7}
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

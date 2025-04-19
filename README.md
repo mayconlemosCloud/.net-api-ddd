@@ -67,6 +67,18 @@ O objetivo deste projeto é criar uma API RESTful para gerenciamento de tarefas,
 
 ---
 
+## Como executar os testes unitários
+
+1. **Execute os testes unitários com o comando:**
+   ```sh
+   dotnet test
+   ```
+2. **Verifique o relatório de cobertura de testes:**
+   - Após rodar os testes, um relatório de cobertura será gerado (exemplo: `coverage-report`).
+   - Analise os arquivos e métodos não cobertos para criar novos testes e aumentar a cobertura.
+
+---
+
 # Fase 2: Refinamento
 
 Perguntas para futuras melhorias:

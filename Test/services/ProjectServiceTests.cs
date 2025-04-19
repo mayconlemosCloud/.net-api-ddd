@@ -10,6 +10,7 @@ using AutoMapper;
 using FluentValidation;
 using Application.DTOs;
 
+namespace Test.Services;
 public class ProjectServiceTests
 {
     private readonly Mock<IBaseRepository<Project>> _projectRepositoryMock;

@@ -11,6 +11,7 @@ using AutoMapper;
 using FluentValidation;
 using Application.DTOs; // Importa o namespace correto para a interface IBaseRepository.
 
+namespace Test.Services;
 public class UserServiceTests
 {
     private readonly Mock<IBaseRepository<User>> _userRepositoryMock; // Mock para a interface de repositório de usuários.

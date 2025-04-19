@@ -5,8 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <CoverletOutputFormat>cobertura,opencover</CoverletOutputFormat>
+    <Exclude>**/IOC/**</Exclude>
+    <Exclude>**/Migrations/**</Exclude>
   </PropertyGroup>
 
+ 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
@@ -21,10 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\API\API.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\API\API.csproj" />
+    <Using Include="Xunit" />
   </ItemGroup>
+
 </Project>
