@@ -1,45 +1,44 @@
-### Criar Usuário
+### User Endpoints
+
+#### Create User
 POST http://localhost:5163/api/user
 Content-Type: application/json
-
 {
   "name": "Usuário Exemplo",
   "email": "usuario.exemplo@teste.com"
 }
 
-### Listar Usuários (para pegar o id)
+#### List Users
 GET http://localhost:5163/api/user
 Accept: application/json
 
-### Criar Projeto (substitua {{userId}} pelo id retornado acima)
+### Project Endpoints
+
+#### Create Project
 POST http://localhost:5163/api/project
 Content-Type: application/json
-
 {
   "name": "Projeto Exemplo",
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-### Pegar o id do projeto criado
+#### Get Project by ID
 GET http://localhost:5163/api/project/019644b4-b15a-7054-be21-8a7fd2e8c98a
 Accept: application/json
 
-### remover projeto 
+#### Delete Project
 DELETE http://localhost:5163/api/project/019644b4-b15a-7054-be21-8a7fd2e8c98a
 Content-Type: application/json
 
-
-
-
-
-### Listar Projetos (para pegar o id do projeto)
+#### List Projects
 GET http://localhost:5163/api/project
 Accept: application/json
 
-### Criar Tarefa (substitua {{projectId}} pelo id retornado acima)
+### Task Endpoints
+
+#### Create Task
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "Minha Tarefa 2",
   "description": "Descrição da tarefa",
@@ -50,10 +49,9 @@ Content-Type: application/json
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-## Concluir tarefa (substitua {{taskId}} pelo id retornado acima)
+#### Update Task
 PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
 Content-Type: application/json
-
 {
   "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
   "title": "Minha Tarefa 2",
@@ -65,112 +63,75 @@ Content-Type: application/json
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-### Listar Tarefas (opcional)
+#### List Tasks
 GET http://localhost:5163/api/task
 Accept: application/json
 
+### Validation Tests
 
+#### User Validation Tests
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ================= USER VALIDATOR TESTS =================
-
-### [User] Nome obrigatório
+##### Name Required
 POST http://localhost:5163/api/user
 Content-Type: application/json
-
 {
   "name": "",
   "email": "usuario.teste@teste.com"
 }
 
-### [User] Nome maior que 100 caracteres
+##### Name Exceeds 100 Characters
 POST http://localhost:5163/api/user
 Content-Type: application/json
-
 {
   "name": "Usuário com nome muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   "email": "usuario.teste@teste.com"
 }
 
-### [User] E-mail obrigatório
+##### Email Required
 POST http://localhost:5163/api/user
 Content-Type: application/json
-
 {
   "name": "Usuário Teste",
   "email": ""
 }
 
-### [User] E-mail inválido
+##### Invalid Email
 POST http://localhost:5163/api/user
 Content-Type: application/json
-
 {
   "name": "Usuário Teste",
   "email": "email-invalido"
 }
 
-// ================= PROJECT VALIDATOR TESTS =================
+#### Project Validation Tests
 
-### [Project] Nome obrigatório
+##### Name Required
 POST http://localhost:5163/api/project
 Content-Type: application/json
-
 {
   "name": "",
   "userId": ""
 }
 
-### [Project] Nome maior que 100 caracteres
+##### Name Exceeds 100 Characters
 POST http://localhost:5163/api/project
 Content-Type: application/json
-
 {
   "name": "Projeto com nome muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   "userId": ""
 }
 
-### [Project] Mais de 20 tarefas (crie 21 tarefas para o mesmo projeto para testar)
-// Repita a requisição de criação de tarefa 21 vezes para o mesmo projectId
+##### More Than 20 Tasks
+// Repeat the task creation request 21 times for the same projectId
 
-### [Project] Remover projeto com tarefas pendentes
-// Tente remover um projeto que ainda possui tarefas com status diferente de "Concluída"
+##### Remove Project with Pending Tasks
+// Attempt to delete a project that still has tasks with a status other than "Concluída"
 
-// ================= TASK VALIDATOR TESTS =================
+#### Task Validation Tests
 
-### [Task] Título obrigatório
+##### Title Required
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "",
   "description": "Descrição da tarefa",
@@ -181,10 +142,9 @@ Content-Type: application/json
   "userId": ""
 }
 
-### [Task] Título maior que 100 caracteres
+##### Title Exceeds 100 Characters
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "Título de tarefa muito grande que ultrapassa o limite de 100 caracteres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   "description": "Descrição da tarefa",
@@ -195,13 +155,12 @@ Content-Type: application/json
   "userId": ""
 }
 
-### [Task] Descrição maior que 500 caracteres
+##### Description Exceeds 500 Characters
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "Tarefa Teste",
-  "description": "Descrição muito longa..." // insira mais de 500 caracteres aqui
+  "description": "Descrição muito longa..." // insert more than 500 characters here
   ,
   "dueDate": "2025-05-01T00:00:00Z",
   "status": "Pendente",
@@ -210,10 +169,9 @@ Content-Type: application/json
   "userId": ""
 }
 
-### [Task] Data de vencimento no passado
+##### Due Date in the Past
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "Tarefa com data passada",
   "description": "Descrição da tarefa",
@@ -224,10 +182,9 @@ Content-Type: application/json
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-### [Task] Prioridade inválida
+##### Invalid Priority
 POST http://localhost:5163/api/task
 Content-Type: application/json
-
 {
   "title": "Tarefa com prioridade inválida",
   "description": "Descrição da tarefa",
@@ -238,34 +195,12 @@ Content-Type: application/json
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
-### [Task] Alteração de prioridade após criação
-// Tente atualizar a prioridade de uma tarefa já criada (endpoint PUT/PATCH)
+##### Update Priority After Creation
+// Attempt to update the priority of an already created task (PUT/PATCH endpoint)
 
-### Listar todas as tarefas 
-GET http://localhost:5163/api/task
-Accept: application/json
-
-### [Task] Atualizar tarefa para testar histórico de alterações
-# Substitua {taskId}, {projectId}, {userId} pelos valores reais
-
+##### Update Task with Comments
 PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
 Content-Type: application/json
-
-{
-    "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
-    "title": "Minha Tarefa atualizada",
-    "description": "Descrição da tarefa",
-    "dueDate": "2025-05-01T00:00:00Z",
-    "status": "Pendente",
-    "priority": "Baixa",
-    "projectId": "019644b4-cc3e-7773-852c-342589080a73",
-    "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
-}
-
-### [Task] Atualizar tarefa com comentário
-PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
-Content-Type: application/json
-
 {
     "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
     "title": "Minha Tarefa atualizada",
@@ -275,14 +210,9 @@ Content-Type: application/json
     "priority": "Baixa",
     "projectId": "019644b4-cc3e-7773-852c-342589080a73",
     "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c",
-     "comments": [
-    "comentário 1",
-    "comentário 2"
-
-  ]
+    "comments": [
+        "comentário 1",
+        "comentário 2"
+    ]
 }
-
-### [Task] Listar as tarefa 
-GET http://localhost:5163/api/task
-Accept: application/json
 
