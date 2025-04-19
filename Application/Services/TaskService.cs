@@ -33,7 +33,8 @@ namespace Application.Services
         public async Task<TaskResponse?> GetByIdAsync(Guid id)
         {
             var task = await _taskRepository.GetByIdAsync(id);
-            return task == null ? null : _mapper.Map<TaskResponse>(task);
+            if (task == null) return null;
+            return _mapper.Map<TaskResponse>(task);
         }
 
         public async Task<TaskResponse> AddAsync(TaskRequest request)
@@ -67,6 +68,11 @@ namespace Application.Services
         {
             var task = await _taskRepository.GetByIdAsync(id);
             if (task == null) return false;
+            var validationResult = await _validator.ValidateAsync(task);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
             await _taskRepository.DeleteAsync(task);
             return true;
         }

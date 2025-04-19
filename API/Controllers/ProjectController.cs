@@ -22,19 +22,41 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProjects()
         {
-            var projects = await _projectService.GetAllAsync();
-            return Ok(projects);
+            try
+            {
+                var projects = await _projectService.GetAllAsync();
+                return Ok(projects);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProjectById(Guid id)
         {
-            var project = await _projectService.GetByIdAsync(id);
-            if (project == null)
+            try
             {
-                return NotFound();
+                var project = await _projectService.GetByIdAsync(id);
+                if (project == null)
+                {
+                    return NotFound(new { message = "Project not found" });
+                }
+                return Ok(project);
             }
-            return Ok(project);
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -44,9 +66,19 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var createdProject = await _projectService.AddAsync(request);
-            return CreatedAtAction(nameof(GetProjectById), new { id = createdProject.Id }, createdProject);
+            try
+            {
+                var createdProject = await _projectService.AddAsync(request);
+                return CreatedAtAction(nameof(GetProjectById), new { id = createdProject.Id }, createdProject);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
@@ -56,26 +88,45 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var updatedProject = await _projectService.UpdateAsync(id, request);
-            if (updatedProject == null)
+            try
             {
-                return NotFound();
+                var updatedProject = await _projectService.UpdateAsync(id, request);
+                if (updatedProject == null)
+                {
+                    return NotFound(new { message = "Project not found" });
+                }
+                return Ok(updatedProject);
             }
-
-            return Ok(updatedProject);
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
-            var isDeleted = await _projectService.DeleteAsync(id);
-            if (!isDeleted)
+            try
             {
-                return NotFound();
+                var isDeleted = await _projectService.DeleteAsync(id);
+                if (!isDeleted)
+                {
+                    return NotFound(new { message = "Project not found" });
+                }
+                return NoContent();
             }
-
-            return NoContent();
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }

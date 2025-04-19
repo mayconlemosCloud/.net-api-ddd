@@ -20,6 +20,18 @@ Content-Type: application/json
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
+### Pegar o id do projeto criado
+GET http://localhost:5163/api/project/019644b4-b15a-7054-be21-8a7fd2e8c98a
+Accept: application/json
+
+### remover projeto 
+DELETE http://localhost:5163/api/project/019644b4-b15a-7054-be21-8a7fd2e8c98a
+Content-Type: application/json
+
+
+
+
+
 ### Listar Projetos (para pegar o id do projeto)
 GET http://localhost:5163/api/project
 Accept: application/json
@@ -34,13 +46,60 @@ Content-Type: application/json
   "dueDate": "2025-05-01T00:00:00Z",
   "status": "Pendente",
   "priority": "Alta",
-  "projectId": "01963f81-22b7-7750-b927-68e92b6ee20f",
+  "projectId": "019644b4-b15a-7054-be21-8a7fd2e8c98a",
+  "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
+}
+
+## Concluir tarefa (substitua {{taskId}} pelo id retornado acima)
+PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
+Content-Type: application/json
+
+{
+  "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
+  "title": "Minha Tarefa 2",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-05-01T00:00:00Z",
+  "status": "Concluída",
+  "priority": "Alta",
+  "projectId": "019644b4-b15a-7054-be21-8a7fd2e8c98a",
   "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
 ### Listar Tarefas (opcional)
 GET http://localhost:5163/api/task
 Accept: application/json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ================= USER VALIDATOR TESTS =================
 

@@ -18,18 +18,39 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var tasks = await _taskService.GetAllAsync();
-            return Ok(tasks);
+            try
+            {
+                var tasks = await _taskService.GetAllAsync();
+                return Ok(tasks);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var task = await _taskService.GetByIdAsync(id);
-            if (task == null)
-                return NotFound();
-
-            return Ok(task);
+            try
+            {
+                var task = await _taskService.GetByIdAsync(id);
+                if (task == null)
+                    return NotFound(new { message = "Task not found" });
+                return Ok(task);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -39,9 +60,19 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var createdTask = await _taskService.AddAsync(request);
-            return CreatedAtAction(nameof(GetById), new { id = createdTask.Id }, createdTask);
+            try
+            {
+                var createdTask = await _taskService.AddAsync(request);
+                return CreatedAtAction(nameof(GetById), new { id = createdTask.Id }, createdTask);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
@@ -51,19 +82,41 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var updatedTask = await _taskService.UpdateAsync(id, request);
-            if (updatedTask == null)
-                return NotFound();
-            return Ok(updatedTask);
+            try
+            {
+                var updatedTask = await _taskService.UpdateAsync(id, request);
+                if (updatedTask == null)
+                    return NotFound(new { message = "Task not found" });
+                return Ok(updatedTask);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deleted = await _taskService.DeleteAsync(id);
-            if (!deleted)
-                return NotFound();
-            return NoContent();
+            try
+            {
+                var deleted = await _taskService.DeleteAsync(id);
+                if (!deleted)
+                    return NotFound(new { message = "Task not found" });
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }

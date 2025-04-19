@@ -28,13 +28,16 @@ namespace Application.Services
         public async Task<IEnumerable<ProjectResponse>> GetAllAsync()
         {
             var projects = await _projectRepository.GetAllAsync();
+
             return _mapper.Map<IEnumerable<ProjectResponse>>(projects);
         }
 
         public async Task<ProjectResponse?> GetByIdAsync(Guid id)
         {
             var project = await _projectRepository.GetByIdAsync(id);
-            return project == null ? null : _mapper.Map<ProjectResponse>(project);
+            if (project == null) return null;
+
+            return _mapper.Map<ProjectResponse>(project);
         }
 
         public async Task<ProjectResponse> AddAsync(ProjectRequest request)
@@ -67,6 +70,11 @@ namespace Application.Services
         {
             var project = await _projectRepository.GetByIdAsync(id);
             if (project == null) return false;
+            var validationResult = await _validator.ValidateAsync(project);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
             await _projectRepository.DeleteAsync(project);
             return true;
         }

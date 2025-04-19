@@ -19,19 +19,41 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _userService.GetAllAsync();
-            return Ok(users);
+            try
+            {
+                var users = await _userService.GetAllAsync();
+                return Ok(users);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
-            var user = await _userService.GetByIdAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound();
+                var user = await _userService.GetByIdAsync(id);
+                if (user == null)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                return Ok(user);
             }
-            return Ok(user);
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -41,9 +63,19 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var createdUser = await _userService.AddAsync(request);
-            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+            try
+            {
+                var createdUser = await _userService.AddAsync(request);
+                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
@@ -53,26 +85,45 @@ namespace API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var updatedUser = await _userService.UpdateAsync(id, request);
-            if (updatedUser == null)
+            try
             {
-                return NotFound();
+                var updatedUser = await _userService.UpdateAsync(id, request);
+                if (updatedUser == null)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                return Ok(updatedUser);
             }
-
-            return Ok(updatedUser);
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            var isDeleted = await _userService.DeleteAsync(id);
-            if (!isDeleted)
+            try
             {
-                return NotFound();
+                var isDeleted = await _userService.DeleteAsync(id);
+                if (!isDeleted)
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+                return NoContent();
             }
-
-            return NoContent();
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(new { message = "Validation failed", errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }

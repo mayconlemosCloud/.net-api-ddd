@@ -29,7 +29,8 @@ public class UserService : IUserService
     public async Task<UserResponse?> GetByIdAsync(Guid id)
     {
         var user = await _userRepository.GetByIdAsync(id);
-        return user == null ? null : _mapper.Map<UserResponse>(user);
+        if (user == null) return null;
+        return _mapper.Map<UserResponse>(user);
     }
 
     public async Task<UserResponse> AddAsync(UserRequest request)
@@ -62,6 +63,11 @@ public class UserService : IUserService
     {
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) return false;
+        var validationResult = await _validator.ValidateAsync(user);
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
         await _userRepository.DeleteAsync(user);
         return true;
     }
