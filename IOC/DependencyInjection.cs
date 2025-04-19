@@ -20,6 +20,13 @@ namespace IOC
             services.AddDbContext<TaskManagementDbContext>(options =>
                 options.UseNpgsql(connectionString));
 
+            // Executar migrações automaticamente
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var dbContext = serviceProvider.GetRequiredService<TaskManagementDbContext>();
+                dbContext.Database.Migrate();
+            }
+
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
             services.AddScoped<IBaseRepository<Project>, ProjectRepository>();
@@ -29,7 +36,6 @@ namespace IOC
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
-
 
             services.AddTransient<FluentValidation.IValidator<Domain.Entities.User>, Application.Validations.UserValidator>();
             services.AddTransient<FluentValidation.IValidator<Domain.Entities.Project>, Application.Validations.ProjectValidator>();
