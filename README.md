@@ -151,3 +151,34 @@ O projeto está organizado em camadas seguindo o padrão DDD:
 ## Observações
 
 Este README será atualizado conforme o projeto evoluir e novas funcionalidades forem implementadas.
+
+# Fase 2: Refinamento
+
+Perguntas para futuras melhorias:
+
+1. Quais funcionalidades podem ser adicionadas?
+2. Há necessidade de integração com outros sistemas?
+3. Quais métricas devem ser monitoradas?
+4. Planejamos implementar autenticação no futuro?
+5. Algum padrão arquitetural deve ser adotado?
+6. Como melhorar a interface da API?
+7. Há necessidade de suporte a múltiplos idiomas?
+
+# Fase 3: Final
+
+Melhorias sugeridas para o projeto:
+
+1. **Pontos de Melhoria**:
+   - Melhorar a cobertura de testes unitários para atingir 100%.
+   - Implementar logs estruturados para facilitar a depuração e monitoramento.
+
+2. **Padrões de Implementação**:
+   - Adotar o padrão CQRS (Command Query Responsibility Segregation) para separar operações de leitura e escrita.
+   - Utilizar o padrão de repositório com Unit of Work para gerenciar transações.
+
+3. **Visão sobre Arquitetura/Cloud**:
+   - Migrar a aplicação para uma arquitetura baseada em microsserviços, se necessário, para maior escalabilidade.
+   - Configurar pipelines de CI/CD para automação de testes e deploy.
+   - Utilizar serviços gerenciados na nuvem, como AWS RDS ou Azure SQL, para o banco de dados.
+
+Essas melhorias visam aumentar a qualidade, escalabilidade e manutenção do projeto.
