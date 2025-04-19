@@ -39,7 +39,7 @@ O objetivo deste projeto é criar uma API RESTful para gerenciamento de tarefas,
 
 ## Regras da API e Avaliação
 
-- Não há CRUD para usuários.
+
 - Não há autenticação (será serviço externo).
 - Cobertura de testes unitários mínima de 80% para regras de negócio.
 - Uso de git para versionamento.
