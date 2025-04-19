@@ -1,3 +1,77 @@
+# .NET API DDD Project
+
+## Pré-requisitos
+
+Certifique-se de que você tenha os seguintes softwares instalados em sua máquina:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [.NET SDK 9.0](https://dotnet.microsoft.com/download/dotnet/9.0)
+
+## Como rodar o projeto
+
+### 1. Clonar o repositório
+
+Clone este repositório em sua máquina local:
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd .net-api-ddd
+```
+
+### 2. Configurar o ambiente
+
+Certifique-se de que o arquivo `appsettings.Development.json` está configurado corretamente para o ambiente de desenvolvimento. Verifique as configurações de conexão com o banco de dados e outros parâmetros necessários.
+
+### 3. Construir e rodar os containers Docker
+
+Execute o seguinte comando para construir e iniciar os containers Docker:
+```bash
+docker-compose up --build
+```
+
+Este comando irá:
+- Construir a imagem Docker para a API usando o `Dockerfile`.
+- Iniciar o serviço da API na porta `8080`.
+- Iniciar o serviço PostgreSQL na porta `5432`.
+
+### 4. Acessar a API
+
+Após os containers estarem em execução, você pode acessar a API em:
+```
+http://localhost:8080
+```
+
+
+
+## Estrutura do Projeto
+
+- **API/**: Contém os controladores e configurações da API.
+- **Application/**: Contém os serviços, DTOs, mapeamentos e validações.
+- **Domain/**: Contém as entidades e interfaces de repositório.
+- **Infrastructure/**: Contém o contexto do banco de dados, migrações e implementações de repositório.
+- **IoC/**: Configuração de injeção de dependência.
+
+## Comandos Úteis
+
+- Parar os containers:
+```bash
+docker-compose down
+```
+
+- Reconstruir os containers sem cache:
+```bash
+docker-compose build --no-cache
+```
+
+- Verificar logs dos containers:
+```bash
+docker-compose logs -f
+```
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com este projeto. Faça um fork, crie um branch e envie um pull request.
+
 # Task Management System
 
 ## Descrição do Relacionamento entre Entidades

@@ -19,6 +19,7 @@ namespace Infrastructure
 
             optionsBuilder.UseNpgsql(connectionString);
 
+
             return new TaskManagementDbContext(optionsBuilder.Options);
         }
     }
