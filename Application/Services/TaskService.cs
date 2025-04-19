@@ -58,6 +58,7 @@ namespace Application.Services
             {
                 throw new ValidationException(validationResult.Errors);
             }
+
             await _taskRepository.UpdateAsync(task);
             return _mapper.Map<TaskResponse>(task);
         }

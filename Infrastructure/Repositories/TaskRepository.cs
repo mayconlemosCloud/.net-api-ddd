@@ -25,7 +25,12 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<TaskEntity>> GetAllAsync()
         {
-            return await _context.Tasks.ToListAsync();
+            return await _context.Tasks.
+                 Include(t => t.User).
+                 Include(t => t.Project).
+                 Include(t => t.Comments).
+                 ToListAsync();
+
         }
 
         public async Task AddAsync(TaskEntity entity)
@@ -37,17 +42,6 @@ namespace Infrastructure.Repositories
         public async Task UpdateAsync(TaskEntity entity)
         {
             _context.Tasks.Update(entity);
-
-            var taskHistory = new TaskHistory
-            {
-                TaskEntityId = entity.Id,
-                Changes = "Task atualizada.",
-                UserId = entity.UserId,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
-            await _context.TaskHistories.AddAsync(taskHistory);
-
             await _context.SaveChangesAsync();
         }
 

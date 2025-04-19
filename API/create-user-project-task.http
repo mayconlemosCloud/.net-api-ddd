@@ -203,3 +203,27 @@ Content-Type: application/json
     "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c"
 }
 
+### [Task] Atualizar tarefa com comentário
+PUT http://localhost:5163/api/task/01963f85-f22a-7542-acb6-c8a36e07870e
+Content-Type: application/json
+
+{
+    "id": "01963f85-f22a-7542-acb6-c8a36e07870e",
+    "title": "Minha Tarefa atualizada",
+    "description": "Descrição da tarefa",
+    "dueDate": "2025-05-01T00:00:00Z",
+    "status": "Pendente",
+    "priority": "Baixa",
+    "projectId": "019644b4-cc3e-7773-852c-342589080a73",
+    "userId": "01963c42-0fca-745f-b785-3d5f9ad4001c",
+     "comments": [
+    "comentário 1",
+    "comentário 2"
+
+  ]
+}
+
+### [Task] Listar as tarefa 
+GET http://localhost:5163/api/task
+Accept: application/json
+

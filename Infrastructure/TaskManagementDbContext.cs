@@ -74,25 +74,9 @@ namespace Infrastructure
                       .HasForeignKey(e => e.TaskEntityId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
-
-            // Configurar a chave primária e propriedades para a entidade Comment
-            modelBuilder.Entity<Comment>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Content).IsRequired().HasMaxLength(500);
-                entity.Property(e => e.CreatedAt).IsRequired();
-                entity.Property(e => e.UpdatedAt).IsRequired();
-                entity.Property(e => e.UserId).IsRequired();
-
-                // Relacionamento com TaskEntity (1:N)
-                entity.HasOne(e => e.TaskEntity)
-                      .WithMany(t => t.Comments)
-                      .HasForeignKey(e => e.TaskEntityId)
-                      .OnDelete(DeleteBehavior.Cascade);
-            });
         }
 
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<TaskEntity>())
             {
@@ -107,30 +91,14 @@ namespace Infrastructure
                     {
                         TaskEntityId = task.Id,
                         Changes = changes,
-                        UserId = Guid.NewGuid(), // Substituir pelo usuário autenticado futuramente
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now
+                        UserId = Guid.NewGuid(),
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
                     });
                 }
             }
 
-            foreach (var entry in ChangeTracker.Entries<Comment>())
-            {
-                if (entry.State == EntityState.Added)
-                {
-                    var comment = entry.Entity;
-                    TaskHistories.Add(new TaskHistory
-                    {
-                        TaskEntityId = comment.TaskEntityId,
-                        Changes = $"Comentário adicionado: {comment.Content}",
-                        UserId = comment.UserId,
-                        CreatedAt = comment.CreatedAt,
-                        UpdatedAt = comment.UpdatedAt
-                    });
-                }
-            }
-
-            return base.SaveChanges();
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }
