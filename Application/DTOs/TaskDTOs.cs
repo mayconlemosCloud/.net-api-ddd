@@ -11,6 +11,8 @@ namespace Application.DTOs
         public string Status { get; set; } = string.Empty;
         public Guid ProjectId { get; set; }
         public List<CommentResponse>? Comments { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
     public class TaskRequest
@@ -23,6 +25,8 @@ namespace Application.DTOs
         public Guid ProjectId { get; set; }
         public Guid UserId { get; set; }
         public List<string>? Comments { get; set; } // Apenas o conteúdo dos comentários
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
     public class CommentResponse

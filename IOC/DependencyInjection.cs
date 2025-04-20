@@ -37,6 +37,8 @@ namespace IOC
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
 
+            services.AddScoped<IReportService, ReportService>();
+
             services.AddTransient<FluentValidation.IValidator<Domain.Entities.User>, Application.Validations.UserValidator>();
             services.AddTransient<FluentValidation.IValidator<Domain.Entities.Project>, Application.Validations.ProjectValidator>();
             services.AddTransient<FluentValidation.IValidator<Domain.Entities.TaskEntity>, Application.Validations.TaskValidator>();

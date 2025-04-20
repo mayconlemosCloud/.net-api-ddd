@@ -214,6 +214,7 @@ var assemblies = [
     "name": "API",
     "classes": [
       { "name": "API.Controllers.ProjectController", "rp": "API_ProjectController.html", "cl": 75, "ucl": 0, "cal": 75, "tl": 132, "cb": 10, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.ReportController", "rp": "API_ReportController.html", "cl": 0, "ucl": 10, "cal": 10, "tl": 30, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "API.Controllers.TaskController", "rp": "API_TaskController.html", "cl": 71, "ucl": 0, "cal": 71, "tl": 122, "cb": 10, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "API.Controllers.UserController", "rp": "API_UserController.html", "cl": 74, "ucl": 0, "cal": 74, "tl": 129, "cb": 10, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "API_Program.html", "cl": 0, "ucl": 15, "cal": 15, "tl": 32, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -221,15 +222,17 @@ var assemblies = [
   {
     "name": "Application",
     "classes": [
-      { "name": "Application.DTOs.CommentResponse", "rp": "Application_CommentResponse.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 37, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Application.DTOs.CommentResponse", "rp": "Application_CommentResponse.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.DTOs.ProjectRequest", "rp": "Application_ProjectRequest.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.DTOs.ProjectResponse", "rp": "Application_ProjectResponse.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Application.DTOs.TaskRequest", "rp": "Application_TaskRequest.html", "cl": 8, "ucl": 0, "cal": 8, "tl": 37, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Application.DTOs.TaskResponse", "rp": "Application_TaskResponse.html", "cl": 4, "ucl": 3, "cal": 7, "tl": 37, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Application.DTOs.TaskRequest", "rp": "Application_TaskRequest.html", "cl": 12, "ucl": 0, "cal": 12, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Application.DTOs.TaskResponse", "rp": "Application_TaskResponse.html", "cl": 4, "ucl": 5, "cal": 9, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Application.DTOs.UserPerformanceReport", "rp": "Application_UserPerformanceReport.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.DTOs.UserRequest", "rp": "Application_UserRequest.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.DTOs.UserResponse", "rp": "Application_UserResponse.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.Mappings.AutoMapperProfile", "rp": "Application_AutoMapperProfile.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.Services.ProjectService", "rp": "Application_ProjectService.html", "cl": 39, "ucl": 6, "cal": 45, "tl": 82, "cb": 11, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Application.Services.ReportService", "rp": "Application_ReportService.html", "cl": 30, "ucl": 0, "cal": 30, "tl": 49, "cb": 7, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.Services.TaskService", "rp": "Application_TaskService.html", "cl": 39, "ucl": 6, "cal": 45, "tl": 80, "cb": 11, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.Services.UserService", "rp": "Application_UserService.html", "cl": 39, "ucl": 6, "cal": 45, "tl": 74, "cb": 11, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Application.Validations.ProjectValidator", "rp": "Application_ProjectValidator.html", "cl": 17, "ucl": 0, "cal": 17, "tl": 35, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -242,7 +245,7 @@ var assemblies = [
     "classes": [
       { "name": "Domain.Entities.Comment", "rp": "Domain_Comment.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Domain.Entities.Project", "rp": "Domain_Project.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Domain.Entities.TaskEntity", "rp": "Domain_TaskEntity.html", "cl": 12, "ucl": 0, "cal": 12, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Domain.Entities.TaskEntity", "rp": "Domain_TaskEntity.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Domain.Entities.TaskHistory", "rp": "Domain_TaskHistory.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Domain.Entities.User", "rp": "Domain_User.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres_container
+    container_name: database_container
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
@@ -14,7 +14,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    container_name: task_management_api
+    container_name: api_container
     build:
       context: .
       dockerfile: Dockerfile

@@ -10,6 +10,8 @@ namespace Domain.Entities
         public DateTime DueDate { get; set; }
         public string Status { get; set; }
         public string Priority { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         // Propriedades de navegação
         public Guid UserId { get; set; }
