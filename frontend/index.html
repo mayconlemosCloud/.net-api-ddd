@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Management Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-main: #fff;
+      --text-main: #18181b;
+      --text-muted: #52525b;
+      --border-main: #e5e7eb;
+      --card-bg: #fff;
+      --accent-green: #059669;
+      --accent-yellow: #ca8a04;
+      --accent-red: #dc2626;
+      --accent-blue: #2563eb;
+      --accent-gray: #f3f4f6;
+      --badge-text: #fff;
+      --badge-yellow-text: #18181b;
+    }
+    .dark {
+      --bg-main: #18181b;
+      --text-main: #f3f4f6;
+      --text-muted: #a1a1aa;
+      --border-main: #27272a;
+      --card-bg: #232329;
+      --accent-green: #34d399;
+      --accent-yellow: #fde68a;
+      --accent-red: #f87171;
+      --accent-blue: #60a5fa;
+      --accent-gray: #27272a;
+      --badge-text: #232329;
+      --badge-yellow-text: #232329;
+    }
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+    .themed-bg { background: var(--card-bg) !important; }
+    .themed-text { color: var(--text-main) !important; }
+    .themed-muted { color: var(--text-muted) !important; }
+    .themed-border { border-color: var(--border-main) !important; }
+    .themed-green { color: var(--accent-green) !important; }
+    .themed-yellow { color: var(--accent-yellow) !important; }
+    .themed-red { color: var(--accent-red) !important; }
+    .themed-blue { color: var(--accent-blue) !important; }
+    .themed-gray { background: var(--accent-gray) !important; }
+    .themed-badge-green { background: var(--accent-green); color: var(--badge-text); }
+    .themed-badge-yellow { background: var(--accent-yellow); color: var(--badge-yellow-text); }
+    .themed-badge-red { background: var(--accent-red); color: var(--badge-text); }
+    .themed-badge-blue { background: var(--accent-blue); color: var(--badge-text); }
+  </style>
+  <script>
+    function setTheme(theme) {
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      document.getElementById('theme-toggle').innerText = theme === 'dark' ? '☀️' : '🌙';
+    }
+    window.onload = function() {
+      const saved = localStorage.getItem('theme');
+      setTheme(saved === 'dark' ? 'dark' : 'light');
+    };
+    function toggleTheme() {
+      const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+  </script>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <header class="themed-bg themed-border border-b px-6 py-4 flex items-center justify-between transition-colors">
+      <h1 class="text-xl font-bold tracking-tight themed-text">Task Management</h1>
+      <nav class="space-x-2 flex items-center">
+        <button class="themed-text hover:underline text-sm transition">Projetos</button>
+        <button class="themed-text hover:underline text-sm transition">Tarefas</button>
+        <button class="themed-text hover:underline text-sm transition">Usuários</button>
+        <button class="themed-text hover:underline text-sm transition">Relatórios</button>
+        <button id="theme-toggle" onclick="toggleTheme()" class="ml-4 px-2 py-1 rounded themed-border border text-lg transition" title="Alternar tema">🌙</button>
+      </nav>
+    </header>
+
+    <main class="flex-1 px-4 py-8 max-w-4xl mx-auto w-full transition-colors themed-bg">
+      <!-- Dashboard Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="themed-bg themed-border border rounded-lg p-4 flex flex-col items-center">
+          <span class="text-xs themed-muted mb-1">Projetos</span>
+          <span class="text-2xl font-bold themed-text">8</span>
+          <span class="mt-1 themed-green text-xs">2 ativos</span>
+        </div>
+        <div class="themed-bg themed-border border rounded-lg p-4 flex flex-col items-center">
+          <span class="text-xs themed-muted mb-1">Tarefas</span>
+          <span class="text-2xl font-bold themed-text">32</span>
+          <div class="flex space-x-1 mt-1">
+            <span class="px-2 py-0.5 rounded themed-badge-yellow text-xs">12 pendentes</span>
+            <span class="px-2 py-0.5 rounded themed-badge-green text-xs">18 concluídas</span>
+            <span class="px-2 py-0.5 rounded themed-badge-red text-xs">2 atrasadas</span>
+          </div>
+        </div>
+        <div class="themed-bg themed-border border rounded-lg p-4 flex flex-col items-center">
+          <span class="text-xs themed-muted mb-1">Usuários</span>
+          <span class="text-2xl font-bold themed-text">5</span>
+          <span class="mt-1 themed-blue text-xs">1 gerente</span>
+        </div>
+      </div>
+
+      <!-- Projetos em destaque -->
+      <section class="mb-8">
+        <h2 class="text-base font-semibold mb-2 themed-text">Projetos</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="themed-bg themed-border border rounded p-3">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-medium themed-text">API Redesign</span>
+              <span class="px-2 py-0.5 rounded themed-badge-green text-xs">Ativo</span>
+            </div>
+            <div class="text-xs themed-muted mb-1">Refatoração da API para arquitetura DDD.</div>
+            <div class="flex items-center text-xs themed-muted">
+              <span class="mr-2">Tarefas: <span class="themed-text">10/20</span></span>
+              <span class="mr-2 themed-text">Ana</span>
+              <span class="themed-text">30/06/2024</span>
+            </div>
+          </div>
+          <div class="themed-bg themed-border border rounded p-3">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-medium themed-text">Frontend Moderno</span>
+              <span class="px-2 py-0.5 rounded themed-badge-yellow text-xs">Em andamento</span>
+            </div>
+            <div class="text-xs themed-muted mb-1">Dashboard e integração com backend.</div>
+            <div class="flex items-center text-xs themed-muted">
+              <span class="mr-2">Tarefas: <span class="themed-text">7/20</span></span>
+              <span class="mr-2 themed-text">Carlos</span>
+              <span class="themed-text">15/07/2024</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tarefas recentes -->
+      <section class="mb-8">
+        <h2 class="text-base font-semibold mb-2 themed-text">Tarefas Recentes</h2>
+        <div class="overflow-x-auto rounded themed-border border">
+          <table class="min-w-full themed-bg text-xs">
+            <thead>
+              <tr class="themed-muted">
+                <th class="py-1 px-2 text-left">Título</th>
+                <th class="py-1 px-2 text-left">Projeto</th>
+                <th class="py-1 px-2 text-left">Responsável</th>
+                <th class="py-1 px-2 text-left">Prioridade</th>
+                <th class="py-1 px-2 text-left">Status</th>
+                <th class="py-1 px-2 text-left">Prazo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="themed-border border-t">
+                <td class="py-1 px-2 themed-text">Criar endpoints REST</td>
+                <td class="py-1 px-2 themed-text">API Redesign</td>
+                <td class="py-1 px-2 themed-text">Ana</td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-red">Alta</span></td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-yellow">Pendente</span></td>
+                <td class="py-1 px-2 themed-text">20/06/2024</td>
+              </tr>
+              <tr class="themed-border border-t">
+                <td class="py-1 px-2 themed-text">Testes unitários</td>
+                <td class="py-1 px-2 themed-text">API Redesign</td>
+                <td class="py-1 px-2 themed-text">João</td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-yellow">Média</span></td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-green">Concluída</span></td>
+                <td class="py-1 px-2 themed-text">18/06/2024</td>
+              </tr>
+              <tr class="themed-border border-t">
+                <td class="py-1 px-2 themed-text">Design do dashboard</td>
+                <td class="py-1 px-2 themed-text">Frontend Moderno</td>
+                <td class="py-1 px-2 themed-text">Carlos</td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-green">Baixa</span></td>
+                <td class="py-1 px-2"><span class="px-2 rounded themed-badge-yellow">Pendente</span></td>
+                <td class="py-1 px-2 themed-text">25/06/2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold mb-2 themed-text">Performance dos Usuários (30 dias)</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="themed-bg themed-border border rounded p-3 flex flex-col items-center">
+            <span class="font-medium mb-1 themed-text">Ana</span>
+            <span class="text-xl font-bold themed-green">2.1</span>
+            <span class="themed-muted text-xs">Tarefas/dia</span>
+          </div>
+          <div class="themed-bg themed-border border rounded p-3 flex flex-col items-center">
+            <span class="font-medium mb-1 themed-text">João</span>
+            <span class="text-xl font-bold themed-green">1.7</span>
+            <span class="themed-muted text-xs">Tarefas/dia</span>
+          </div>
+          <div class="themed-bg themed-border border rounded p-3 flex flex-col items-center">
+            <span class="font-medium mb-1 themed-text">Carlos</span>
+            <span class="text-xl font-bold themed-yellow">1.2</span>
+            <span class="themed-muted text-xs">Tarefas/dia</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-10 text-center themed-muted text-xs py-4 themed-border border-t">
+      <span class="themed-text">&copy; 2024 Sistema de Gerenciamento de Tarefas.</span>
+    </footer>
+  </div>
+</body>
+</html>
